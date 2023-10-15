@@ -1,37 +1,37 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Todo from "./components/Todo"
 import { nanoid } from "nanoid"
 
 function App() {
-  const [tasks, setTask] = useState([
-    {
-      id: 959,
-      task: 'Meditation & Yoga time',
-      isCompleted: false
-    }
-  ])
+  const [tasks, setTask] = useState(JSON.parse(localStorage.getItem('todos')) || [])
   
   const [inputData, setInputData] = useState('')
+  useEffect(()=> {
+    localStorage.setItem('todos', JSON.stringify(tasks))
+  },[tasks])
+
   function handleChange(e){
     setInputData(()=> e.target.value)
   }
 
   const handleAddTask = (e) => {
     e.preventDefault();
-    const task = {
-      id: nanoid(),
-      task: inputData,
-      isCompleted: false
+    if(inputData){
+      const task = {
+        id: nanoid(),
+        task: inputData,
+        isCompleted: false
+      }
+  
+      setTask((prevTask) => {
+        return [
+          ...prevTask,
+          task
+        ]
+      })
+  
+      setInputData('')
     }
-    
-    setTask((prevTask) => {
-      return [
-        ...prevTask,
-        task
-      ]
-    })
-
-    setInputData('')
   }
 
   return (
