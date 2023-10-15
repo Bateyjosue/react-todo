@@ -35,7 +35,6 @@ function App() {
   }
 
   function handleCompletedTask(e){
-    // e.preventDefault();
     const completedTask= tasks.map(task => {
       if(task.id === e.target.id) {
         return {
@@ -46,9 +45,13 @@ function App() {
         ...task
       }
     })
-    console.log(completedTask);
 
     setTask(completedTask)
+  }
+
+  function handleTaskDeleted(e){
+    const remainingTasks = tasks.filter(task => task.id != e.target.id)
+    setTask(remainingTasks)
   }
 
   return (
@@ -71,17 +74,18 @@ function App() {
         </div>
         <div>
         </div>
-        <section className="todo--tasks my-8 border border-green-700 rounded-md">
+        <section className="todo--tasks my-8  rounded-md">
           {
             tasks.length > 0 ?
             (tasks.map((task, index) => (
               <Todo 
                 key={index} {...task} 
                 handleCompletedTask={handleCompletedTask}
+                handleTaskDeleted={handleTaskDeleted}
                 />
             )))
             :
-            (<div className="text-4xl font-bold opacity-30">No Task Found...</div>)
+            (<div className="text-4xl font-bold opacity-30 text-center">No Task Found...</div>)
           }
         </section>
       </main>
