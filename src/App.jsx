@@ -54,7 +54,7 @@ function App() {
         </div>
         <div>
         </div>
-        <section className="todo--tasks my-8 border py-4 px-2 rounded-md">
+        <section className="todo--tasks my-8 border border-green-700 rounded-md">
           {
             tasks.length > 0 ?
             (tasks.map(task => (
