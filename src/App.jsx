@@ -56,9 +56,9 @@ function App() {
 
   return (
     <>
-      <main className="container mx-auto px-8">
+      <main className="container mx-auto px-8 lg:container lg:mx-auto lg:w-[50%]">
         <h1 className="text-8xl font-bold text-center my-10 opacity-30">todos</h1>
-        <div className="border flex justify-between items-center gap-2 rounded-full">
+        <div className="border flex justify-between items-center gap-2 rounded-full lg:w-[60%] lg:mx-auto">
           <input 
             type="text" 
             name="todo"
@@ -66,6 +66,7 @@ function App() {
             className="border-none w-full h-full py-3 px-4 rounded-full outline-none"
             onChange={handleChange}
             value={inputData}
+
             />
             <span 
               className="material-symbols-outlined mr-2 text-3xl text-green-700 font-bold cursor-pointer"
