@@ -77,9 +77,9 @@ function App() {
         <section className="todo--tasks my-8  rounded-md">
           {
             tasks.length > 0 ?
-            (tasks.map((task, index) => (
+            (tasks.map((task) => (
               <Todo 
-                key={index} {...task} 
+                key={task.is} {...task} 
                 handleCompletedTask={handleCompletedTask}
                 handleTaskDeleted={handleTaskDeleted}
                 />
