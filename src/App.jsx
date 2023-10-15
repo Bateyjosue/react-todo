@@ -1,9 +1,39 @@
 import { useState } from "react"
-import Todos from "./components/Todo"
 import Todo from "./components/Todo"
+import { nanoid } from "nanoid"
 
 function App() {
-  const [tasks, setState] = useState([])
+  const [tasks, setTask] = useState([
+    {
+      id: 959,
+      task: 'Meditation & Yoga time',
+      isCompleted: false
+    }
+  ])
+  
+  const [inputData, setInputData] = useState('')
+  function handleChange(e){
+    setInputData(()=> e.target.value)
+  }
+
+  const handleAddTask = (e) => {
+    e.preventDefault();
+    const task = {
+      id: nanoid(),
+      task: inputData,
+      isCompleted: false
+    }
+    
+    setTask((prevTask) => {
+      return [
+        ...prevTask,
+        task
+      ]
+    })
+
+    setInputData('')
+  }
+
   return (
     <>
       <main className="container mx-auto px-8">
@@ -14,8 +44,15 @@ function App() {
             name="todo"
             placeholder="Add todo..."
             className="border-none w-full h-full py-3 px-4 rounded-full outline-none"
+            onChange={handleChange}
+            value={inputData}
             />
-            <span className="material-symbols-outlined mr-2 text-3xl text-green-700 font-bold">add_circle</span>
+            <span 
+              className="material-symbols-outlined mr-2 text-3xl text-green-700 font-bold cursor-pointer"
+              onClick={handleAddTask}
+              >add_circle</span>
+        </div>
+        <div>
         </div>
         <section className="todo--tasks my-8 border py-4 px-2 rounded-md">
           {

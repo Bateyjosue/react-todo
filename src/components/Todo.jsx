@@ -8,9 +8,9 @@ function Todo({task, isCompleted}) {
           type="checkbox" 
           name="task" 
           id="task"
-          checked={isCompleted} 
+          defaultChecked={isCompleted}
           />
-        <label htmlFor="task">{task}</label>
+        <label htmlFor="task" className={`${isCompleted ? 'line-through text-gray-500' : ''}`}>{task}</label>
       </article>
     </>
   )
