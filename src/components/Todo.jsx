@@ -3,7 +3,7 @@
 function Todo({task, isCompleted}) {
   return (
     <>
-      <article>
+      <article className="flex gap-2">
         <input 
           type="checkbox" 
           name="task" 
