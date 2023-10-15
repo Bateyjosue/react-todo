@@ -34,6 +34,23 @@ function App() {
     }
   }
 
+  function handleCompletedTask(e){
+    // e.preventDefault();
+    const completedTask= tasks.map(task => {
+      if(task.id === e.target.id) {
+        return {
+          ...task, 
+          isCompleted: !task.isCompleted
+        }
+      }else return {
+        ...task
+      }
+    })
+    console.log(completedTask);
+
+    setTask(completedTask)
+  }
+
   return (
     <>
       <main className="container mx-auto px-8">
@@ -57,8 +74,11 @@ function App() {
         <section className="todo--tasks my-8 border border-green-700 rounded-md">
           {
             tasks.length > 0 ?
-            (tasks.map(task => (
-              <Todo key={task.id} {...task}></Todo>
+            (tasks.map((task, index) => (
+              <Todo 
+                key={index} {...task} 
+                handleCompletedTask={handleCompletedTask}
+                />
             )))
             :
             (<div className="text-4xl font-bold opacity-30">No Task Found...</div>)
